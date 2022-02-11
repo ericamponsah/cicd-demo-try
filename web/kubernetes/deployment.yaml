@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  namespace: NAMESPACE
+  labels:
+    app: web-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-tier
+  template:
+    metadata:
+      labels:
+        app: web-tier
+    spec:
+      containers:
+      - name: web-container
+        image: ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/webapp:VERSION
+        ports:
+        - containerPort: 3000
